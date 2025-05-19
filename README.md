@@ -24,5 +24,6 @@ Requisitos
 1. **Clonar el repositorio**
 cd 51913/TPanalizador
 -Ejecución del analizador:
-Puedes ejecutar el analizador pasándole un archivo de entrada como argumento:
-node index.js ../ejemplo/
+Puedes ejecutar el analizador escribiendo lo siguiente en la terminal:
+node index.js    (aparecera Ingresar Cadena al escribir node index.js)
+
