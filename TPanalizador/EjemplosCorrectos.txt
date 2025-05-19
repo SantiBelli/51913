@@ -1,9 +1,0 @@
-Primer ejemplo valido:
-
- si verdadero entonces { imprimir("Hola mundo"); salir; }
-
-
-
-Segundo ejemplo valido:
-
-si falso entonces {imprimir("No se verá esto"); salir;}
