@@ -1,0 +1,13 @@
+Primer Ejemplo Invalido:
+
+si verdadero entonces {
+    imprimir("Falta punto y coma");
+    salir
+}
+
+Segundo Ejemplo Invalido:
+
+si verdadero entonces {
+    escribir("Esto no es válido");
+    salir;
+}
