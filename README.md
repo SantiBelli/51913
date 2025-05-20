@@ -1,29 +1,67 @@
--- TP Analizador -- 
+---TPanalizador---
 
-Este proyecto implementa un analizador léxico y sintáctico en **Node.js** usando **ANTLR4**,
- basado en una gramática simple que reconoce instrucciones de control de 
- flujo como `si`, `sino`, `imprimir` y `salir`.
+GRAMATICA PEDIDA:
+-<programa> ::= { <instrucción> }+
+-<instrucción> ::= <decision>
+-<decision> ::= 'si' <condición> 'entonces' '{' { <sentencia>} '}' ['sino' '{' { <sentencia>} '}']
+-<sentencia> ::= { <salida> }+ | <terminar>
+-<salida> ::= 'imprimir' '('<cadena> ')' ';'
+-<terminar> ::= 'salir' ';'
+-<condición> ::= 'verdadero' | 'falso'
+-<cadena> ::= '"" {<carácter>} """"
+-<carácter> ::= <letra> | <digito> | <simbolo>
+-<letra> ::= 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+-<digito> ::= '0' | '1' | ... | '9' 
+<simbolo> ::= '.' | ',' | '!' | '?' | ':' | ';'
 
--Gramática
 
-La gramática `TPanalizador.g4` define el siguiente lenguaje:
+COMO EJECUTAR:
 
-- Instrucciones de decisión condicional (`si`, `sino`) con bloques entre llaves
-- Sentencias de salida (`imprimir("texto");`)
-- Sentencias de finalización (`salir;`)
-- Condiciones lógicas (`verdadero`, `falso`)
+-clonar archivo: git clone github.com/SantiBelli/51913.git
+-en la Terminal para probar ejemplos:
+node index.js (aparecerá Ingresar Cadena:)
 
+EJEMPLO:
+si verdadero entonces { imprimir("Hola mundo"); salir; }
+debería aparecer:
+Tabla de Tokens y Lexemas:
+--------------------------------------------------
+| Lexema         | Token                         |
+--------------------------------------------------
+| si             | SI                            |
+| verdadero      | VERDADERO                     |
+| entonces       | ENTONCES                      |
+| {              | LBRACE                        |
+| imprimir       | IMPRIMIR                      |
+| (              | LPAREN                        |
+| "Hola mundo"   | CADENA                        |
+| )              | RPAREN                        |
+| ;              | SEMI                          |
+| salir          | SALIR                         |
+| ;              | SEMI                          |
+| }              | RBRACE                        |
+--------------------------------------------------
 
-Requisitos
-
-- Node.js (v14 o superior)
-- ANTLR 4.13 o compatible
-
- Instalación
-
-1. **Clonar el repositorio**
-cd 51913/TPanalizador
--Ejecución del analizador:
-Puedes ejecutar el analizador escribiendo lo siguiente en la terminal:
-node index.js    (aparecera Ingresar Cadena al escribir node index.js)
+Entrada válida.
+Árbol de derivación: (programa (instruccion (decision si (condicion verdadero) entonces { (sentencia (salida imprimir ( (cadena "Hola mundo") ) ;) (terminar salir ;)) })))
+programa
+  instruccion
+    decision
+      si
+      condicion
+        verdadero
+      entonces
+      {
+      sentencia
+        salida
+          imprimir
+          (
+          cadena
+            "Hola mundo"
+          )
+          ;
+        terminar
+          salir
+          ;
+      }
 
